@@ -48,7 +48,7 @@
     Application: A custom rate limiter using Redis is implemented to control the number of requests a client can make within a certain time window, preventing abuse and ensuring fair usage of the system resources.
 
 ## Setup and installation
-Please add your own credentials for ethereal email service
+Please add your own credentials for ethereal email service <br>
 `
 EMAIL_USER=example@ethereal.email
 EMAIL_PASS=examplEPassGivenByaservice1123
