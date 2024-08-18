@@ -1,25 +1,25 @@
 import request from 'supertest';
 import app from '../app';
-import validationService from '../services/validationService';
-import messageQueue from '../queues/messageQueue';
+import { validateChildCommand } from '../commands/validateChildCommand';
+import { sendMessageCommand } from '../commands/sendMessageCommand';
 
-jest.mock('../services/validationService');
-jest.mock('../queues/messageQueue');
+jest.mock('../commands/validateChildCommand');
+jest.mock('../commands/sendMessageCommand');
 
 describe('Message Controller', () => {
   const validChildId = '730b0412-72c7-11e9-a923-1681be663d3e';
   const validMessage = 'Dear Santa, I have been good this year!';
 
   beforeEach(() => {
-    jest.clearAllMocks(); 
+    jest.clearAllMocks();
 
-    (validationService.validateChild as jest.Mock).mockResolvedValue({
+    (validateChildCommand as jest.Mock).mockResolvedValue({
       isValid: true,
       childName: 'charlie.brown',
       childAddress: 'Address 1',
     });
 
-    (messageQueue.enqueueMessage as jest.Mock).mockResolvedValue(true);
+    (sendMessageCommand as jest.Mock).mockResolvedValue(true);
   });
 
   it('should return 200 for a valid message submission', async () => {
@@ -34,7 +34,7 @@ describe('Message Controller', () => {
   });
 
   it('should return 400 for an invalid child ID', async () => {
-    (validationService.validateChild as jest.Mock).mockResolvedValue({
+    (validateChildCommand as jest.Mock).mockResolvedValue({
       isValid: false,
       error: 'Child not registered.',
     });

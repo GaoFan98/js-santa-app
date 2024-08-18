@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createErrorResponse, ERROR_MESSAGES } from './errorService';
+import { createErrorResponse } from '../services/errorService';
 import { ValidationResult } from '../types';
 
 const calculateAge = (birthdate: string): number => {
@@ -9,7 +9,7 @@ const calculateAge = (birthdate: string): number => {
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 };
 
-const validateChild = async (childId: string): Promise<ValidationResult> => { 
+export const validateChildQuery = async (childId: string): Promise<ValidationResult> => { 
   try {
     const userProfiles = await axios.get('https://raw.githubusercontent.com/alj-devops/santa-data/master/userProfiles.json');
     const users = await axios.get('https://raw.githubusercontent.com/alj-devops/santa-data/master/users.json');
@@ -38,5 +38,3 @@ const validateChild = async (childId: string): Promise<ValidationResult> => {
     return createErrorResponse('VALIDATION_SERVICE_ERROR');
   }
 };
-
-export default { validateChild };

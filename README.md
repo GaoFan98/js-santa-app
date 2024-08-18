@@ -33,6 +33,15 @@
 5. Health Check Pattern
     Explanation: The Health Check pattern is employed to monitor the health of services in a system. It ensures that only healthy services are available for handling requests and that any issues are detected and addressed promptly.
     Application: Health checks are configured in the Docker Compose setup for RabbitMQ, ensuring that the service is operational before dependent services start.
+6. CQRS (Command Query Responsibility Segregation)
+    CQRS pattern separates the responsibilities of command and query operations. Command operations (write) modify data, while query operations (read) retrieve data, allowing for optimized read and write operations.
+    Application: The project uses CQRS by separating the validation and message processing logic into commands (e.g., validateChildCommand, sendMessageCommand) and queries (e.g., getMessageEventsQuery), allowing for clear separation of responsibilities and optimized performance.
+7. Event Sourcing
+    Event Sourcing ensures that all changes to the application state are stored as a sequence of events. This allows the system to rebuild the current state by replaying these events, providing a complete audit trail and enabling complex scenarios like temporal queries.
+    Application: The project implements Event Sourcing by recording events, such as child validation attempts, into a MongoDB-based event store. This allows the system to reconstruct the state of the application by replaying these events, providing a reliable and traceable record of all actions.
+8. Rate Limiting
+    Rate Limiting pattern is used to control the rate at which a client can access resources or services. This helps protect the system from being overwhelmed by too many requests in a short period.
+    Application: A custom rate limiter using Redis is implemented to control the number of requests a client can make within a certain time window, preventing abuse and ensuring fair usage of the system resources.
 
 ## Setup and installation
 Please add your own credentials for ethereal email service

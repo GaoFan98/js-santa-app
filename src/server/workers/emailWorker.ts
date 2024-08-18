@@ -2,6 +2,7 @@ import messageQueue from '../queues/messageQueue';
 import emailService from '../services/emailService';
 import retryHandler from '../middlewares/retryHandler';
 import { Message } from '../types';
+import { saveEvent } from '../services/eventStoreService';
 
 const pendingMessages: Message[] = [];
 
@@ -25,8 +26,10 @@ export const queueWorker = () => {
       try {
         await retryHandler(() => emailService.sendEmail(emailData), 3, 1000);
         console.log(`Processed ${aggregatedMessages.length} messages`);
+        await saveEvent('EMAIL_SENT', { messages: aggregatedMessages });
       } catch (error) {
         console.error('Failed to send aggregated email:', error);
+        await saveEvent('EMAIL_SEND_FAILED', { messages: aggregatedMessages, error });
       }
     }
   }, 15000);
