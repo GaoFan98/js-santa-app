@@ -50,7 +50,9 @@
 ## Setup and installation
 Please add your own credentials for ethereal email service <br>
 `
-EMAIL_USER=example@ethereal.email  <br>
+EMAIL_USER=example@ethereal.email 
+`
+`
 EMAIL_PASS=examplEPassGivenByaservice1123
 `
 
