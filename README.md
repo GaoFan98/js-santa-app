@@ -22,6 +22,7 @@
 ![services](https://raw.githubusercontent.com/GaoFan98/js-santa-app/master/diagrams/services.png)
 
 ### Architectural Patterns Used
+### NOTE! This application can be implemented without any complications using pattern below. All patterns were implemented for knowlege show case. It can just be 1 end point and frontend :D 
 1. Microservices Architecture
     Microservices is an architectural style that organizes an application as a collection of small, autonomous services. Each service is independently deployable and is responsible for a specific business function within the system. Services communicate with each other over a network.
     Application: The project is divided into distinct services (client, server, queue), each handling a specific aspect of the application. This modularity allows independent development, deployment, and scaling of each service.
