@@ -16,6 +16,10 @@
 
 ### Diagrams
  Please refer to diagrams folder in project root
+ ## Layers 
+![layers](https://raw.githubusercontent.com/GaoFan98/js-santa-app/master/diagrams/layers.png)
+## Services
+![services](https://raw.githubusercontent.com/GaoFan98/js-santa-app/master/diagrams/services.png)
 
 ### Architectural Patterns Used
 1. Microservices Architecture
